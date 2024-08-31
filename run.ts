@@ -19,10 +19,13 @@ if (fs.existsSync(envPath)) {
         console.log('Connected to the MongoDB server');
         const db = client.db(process.env.MONGODB_DB);
 
+        let f = await db.collection("students")
+        let result = await f.find({}).toArray()
+        console.log(result)
 
-        let collections = await db.collections();
-        console.log(collections.map(c=> c.collectionName))
-        
+        // let collections = await db.collections();
+        // console.log(collections.map(c=> c.collectionName))
+
 
     } catch {
         console.log("Failed to connect to Mongo Server.")
